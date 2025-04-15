@@ -82,7 +82,12 @@ print_r($parsed);
 
 有啥问题或者建议都欢迎提 issue 或 PR，我会尽量回复。
 
-# 🔧 更多工具包（可独立使用，也可统一安装）
+## 🙏 致谢
+这个包最初的灵感，来自一位朋友在我另一个仓库的 issues 里提到的想法，还贴心地分享了其他朋友的实现：[pupuk/address](https://github.com/pupuk/address)。当时就觉得这个方向挺有意思，也正是因为他的启发，我才动手做了 `hejunjie/address-parser`。
+
+感谢他的思路分享，也希望这个小工具能帮到更多人 🙌
+
+## 🔧 更多工具包（可独立使用，也可统一安装）
 
 本项目最初是从 [hejunjie/tools](https://github.com/zxc7563598/php-tools) 拆分而来，如果你想一次性安装所有功能组件，也可以使用统一包：
 
