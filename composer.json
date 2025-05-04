@@ -1,6 +1,6 @@
 {
   "name": "hejunjie/address-parser",
-  "description": "收货地址智能解析工具，支持从非结构化文本中提取姓名、手机号、身份证号、省市区、详细地址等字段，适用于电商、物流、CRM 等系统。",
+  "description": "An intelligent address parser that extracts name, phone number, ID number, region, and detailed address from unstructured text—perfect for e-commerce, logistics, and CRM systems.",
   "type": "library",
   "license": "MIT",
   "autoload": {
