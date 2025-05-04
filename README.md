@@ -1,34 +1,43 @@
 # hejunjie/address-parser
 
-一个简单实用的 PHP 地址解析工具，可以从混杂的字符串中提取出 **姓名、手机号、身份证、邮编、以及完整的省市区地址信息**。
+<div align="center">
+  <a href="./README.md">English</a>｜<a href="./README.zh-CN.md">简体中文</a>
+  <hr width="50%"/>
+</div>
 
-> 🚀 适用于快递地址、用户信息录入等场景，自动识别结构化信息。
-
-如果你不想要部署，只是想要进行使用，可以 👉 [点击此处进行使用](https://tools.hejunjie.life/#/external/address-parser)
-
-支持批量查询
-
----
-
-## ✨ 特性
-
-- 自动识别：支持姓名、手机号、身份证、邮编提取  
-- 地址解析：基于省市区行政区划数据，智能匹配行政区域  
-- 结构化返回：统一结构输出，便于前后端对接  
-- 零依赖：纯 PHP 编写，无需额外扩展  
-- 支持 PHP 8+
+An intelligent address parser that extracts name, phone number, ID number, region, and detailed address from unstructured text—perfect for e-commerce, logistics, and CRM systems.
 
 ---
 
-## 📦 安装
+A simple and practical PHP address parsing tool that can extract **name, phone number, ID card number, postal code, and full province-city-district address** from unstructured strings.
 
-使用 Composer 安装：
+> 🚀 Ideal for use cases like shipping addresses and user information entry, automatically identifying and structuring key data.
+
+If you don’t want to deploy it yourself and just want to use it directly, you can 👉 [Click here to use it](https://tools.hejunjie.life/#/external/address-parser)
+
+Batch queries are supported.
+
+---
+
+## ✨ Features
+
+- Auto Recognition: Supports extraction of name, phone number, ID card, and postal code
+- Address Parsing: Intelligently matches administrative regions based on province/city/district data
+- Structured Output: Returns data in a unified structure, easy for frontend-backend integration
+- Zero Dependencies: Written in pure PHP, no additional extensions required
+- PHP 8+ Supported
+
+---
+
+## 📦 Installation
+
+Install via Composer:
 
 ```bash
 composer require hejunjie/address-parser
 ```
 
-## 🧠 使用示例
+## 🧠 Usage Example
 
 ```php
 use Hejunjie\AddressParser\AddressParser;
@@ -41,7 +50,7 @@ print_r($parsed);
 
 ```
 
-输出结果
+Output Result
 
 ```php
 [
@@ -56,69 +65,73 @@ print_r($parsed);
 ]
 ```
 
-## 🧩 返回字段说明
+## 🧩 Response Field Description
 
-| 字段名 | 说明 |
+| Parameter | Description |
 |:-------|:-----|
-| name | 姓名 |
-| mobile | 手机号 |
-| idn | 身份证号 |
-| postcode | 邮政编码 |
-| province | 省份名称 |
-| city | 城市名称 |
-| region | 区/县名称 |
-| street | 详细地址（去除省市区后的部分） |
+| name | User's full name |
+| mobile | User's mobile number |
+| idn | User's national ID card number |
+| postcode | Zip/postal code |
+| province | Name of the province |
+| city | Name of the city |
+| region | Name of the district or county |
+| street | Remaining address after removing province, city, and district |
 
-## 🧰 用途 & 背景
+## 🧰 Purpose & Background
 
-在实际业务中，用户填写的地址往往是非结构化的，例如：
+In real-world scenarios, user-submitted addresses are often unstructured. For example:
 
 > 张三 13512345678 北京市朝阳区建国路88号 邮编100000
 
-将这些信息手动拆分不仅低效，而且容易出错。`hejunjie/address-parser` 就是为了解决这种 **非结构化地址的自动解析** 而设计的，广泛适用于：
+Manually parsing such data is not only inefficient but also error-prone. The `hejunjie/address-parser` is designed specifically to solve this problem of **unstructured address parsing**, and is suitable for a wide range of use cases:
 
-- 🛒 电商系统中的订单地址处理  
-- 📦 快递物流系统地址识别  
-- 🧾 后台管理系统用户信息补全  
-- 📱 小程序/APP 用户地址录入校验  
+- 🛒 Processing order addresses in e-commerce systems
+- 📦 Address recognition in logistics and delivery services
+- 🧾 User profile completion in admin panels
+- 📱 Address input validation in mini-programs or mobile apps
 
-无论是个人项目还是企业系统，它都能快速提升地址处理的自动化与准确率。
+Whether for personal projects or enterprise systems, it significantly boosts automation and accuracy in address handling.
 
-有啥问题或者建议都欢迎提 issue 或 PR，我会尽量回复。
+If you have any questions or suggestions, feel free to submit an issue or PR — I’ll do my best to respond.
 
-## 🙏 致谢
-这个包最初的灵感，来自一位朋友在我另一个仓库的 issues 里提到的想法，还贴心地分享了其他朋友的实现：[pupuk/address](https://github.com/pupuk/address)。当时就觉得这个方向挺有意思，也正是因为他的启发，我才动手做了 `hejunjie/address-parser`。
+## 🙏 Acknowledgements
 
-感谢他的思路分享，也希望这个小工具能帮到更多人 🙌
+The inspiration for this package originally came from a friend who mentioned the idea in an issue on one of my other repositories, even kindly sharing another friend's implementation: [pupuk/address](https://github.com/pupuk/address). I found the concept very interesting, and thanks to that inspiration, I created `hejunjie/address-parser`.
 
-## 🔧 更多工具包（可独立使用，也可统一安装）
+Thanks to him for the idea — I hope this little tool helps more people 🙌
 
-本项目最初是从 [hejunjie/tools](https://github.com/zxc7563598/php-tools) 拆分而来，如果你想一次性安装所有功能组件，也可以使用统一包：
+## 🔧 Additional Toolkits (Can be used independently or installed together)
+
+This project was originally extracted from [hejunjie/tools](https://github.com/zxc7563598/php-tools).
+To install all features in one go, feel free to use the all-in-one package:
 
 ```bash
 composer require hejunjie/tools
 ```
 
-当然你也可以按需选择安装以下功能模块：
+Alternatively, feel free to install only the modules you need：
 
-[hejunjie/cache](https://github.com/zxc7563598/php-cache) - 多层缓存系统，基于装饰器模式。
+[hejunjie/utils](https://github.com/zxc7563598/php-utils) - A lightweight and practical PHP utility library that offers a collection of commonly used helper functions for files, strings, arrays, and HTTP requests—designed to streamline development and support everyday PHP projects.
 
-[hejunjie/china-division](https://github.com/zxc7563598/php-china-division) - 中国省市区划分数据包。
+[hejunjie/cache](https://github.com/zxc7563598/php-cache) - A layered caching system built with the decorator pattern. Supports combining memory, file, local, and remote caches to improve hit rates and simplify cache logic.
 
-[hejunjie/error-log](https://github.com/zxc7563598/php-error-log) - 责任链日志上报系统。
+[hejunjie/china-division](https://github.com/zxc7563598/php-china-division) - Regularly updated dataset of China's administrative divisions with ID-card address parsing. Distributed via Composer and versioned for use in forms, validation, and address-related features
 
-[hejunjie/mobile-locator](https://github.com/zxc7563598/php-mobile-locator) - 国内手机号归属地 & 运营商识别。
+[hejunjie/error-log](https://github.com/zxc7563598/php-error-log) - An error logging component using the Chain of Responsibility pattern. Supports multiple output channels like local files, remote APIs, and console logs—ideal for flexible and scalable logging strategies.
 
-[hejunjie/utils](https://github.com/zxc7563598/php-utils) - 常用工具方法集合。
+[hejunjie/mobile-locator](https://github.com/zxc7563598/php-mobile-locator) - A mobile number lookup library based on Chinese carrier rules. Identifies carriers and regions, suitable for registration checks, user profiling, and data archiving.
 
-[hejunjie/url-signer](https://github.com/zxc7563598/php-url-signer) - URL 签名工具，支持对 URL 进行签名和验证。
+[hejunjie/address-parser](https://github.com/zxc7563598/php-address-parser) - An intelligent address parser that extracts name, phone number, ID number, region, and detailed address from unstructured text—perfect for e-commerce, logistics, and CRM systems.
 
-[hejunjie/google-authenticator](https://github.com/zxc7563598/php-google-authenticator) - Google Authenticator 及类似应用的密钥生成、二维码创建和 OTP 验证。
+[hejunjie/url-signer](https://github.com/zxc7563598/php-url-signer) - A PHP library for generating URLs with encryption and signature protection—useful for secure resource access and tamper-proof links.
 
-[hejunjie/simple-rule-engine](https://github.com/zxc7563598/php-simple-rule-engine) - 一个轻量、易用的 PHP 规则引擎，支持多条件组合、动态规则执行。
+[hejunjie/google-authenticator](https://github.com/zxc7563598/php-google-authenticator) - A PHP library for generating and verifying Time-Based One-Time Passwords (TOTP). Compatible with Google Authenticator and similar apps, with features like secret generation, QR code creation, and OTP verification.
 
-👀 所有包都遵循「轻量实用、解放双手」的原则，能单独用，也能组合用，自由度高，欢迎 star 🌟 或提 issue。
+[hejunjie/simple-rule-engine](https://github.com/zxc7563598/php-simple-rule-engine) - A lightweight and flexible PHP rule engine supporting complex conditions and dynamic rule execution—ideal for business logic evaluation and data validation.
+
+👀 All packages follow the principles of being lightweight and practical — designed to save you time and effort. They can be used individually or combined flexibly. Feel free to ⭐ star the project or open an issue anytime!
 
 ---
 
-该库后续将持续更新，添加更多实用功能。欢迎大家提供建议和反馈，我会根据大家的意见实现新的功能，共同提升开发效率。
+This library will continue to be updated with more practical features. Suggestions and feedback are always welcome — I’ll prioritize new functionality based on community input to help improve development efficiency together.
