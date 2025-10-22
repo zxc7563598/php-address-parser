@@ -15,7 +15,7 @@ A simple and practical PHP address parsing tool that can extract **name, phone n
 
 > 🚀 Ideal for use cases like shipping addresses and user information entry, automatically identifying and structuring key data.
 
-If you don’t want to deploy it yourself and just want to use it directly, you can 👉 [Click here to use it](https://tools.hejunjie.life/#/external/address-parser)
+If you don’t want to deploy it yourself and just want to use it directly, you can 👉 [Click here to use it](https://hejunjie.life/composer/address-parser)
 
 Batch queries are supported.
 
