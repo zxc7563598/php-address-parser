@@ -145,7 +145,9 @@ class RegionMatcher
         if ($regionInput === '') {
             return $result;
         }
-        $regionMatches = array_filter($level3Data, fn($v) => mb_strpos($v['name'], $regionInput) !== false);
+        $regionMatches = array_filter($level3Data, function ($v) use ($regionInput) {
+            return mb_strpos($v['name'], $regionInput) !== false;
+        });
         if (count($regionMatches) > 1) {
             $result = self::handleMultipleRegionMatches($regionMatches, $cityInput, $unknownValue, $level1Data, $level2Data, $regionInput);
         } elseif (count($regionMatches) === 1) {
@@ -179,7 +181,9 @@ class RegionMatcher
             'city' => $unknownValue,
             'region' => $unknownValue
         ];
-        $cityMatches = array_filter($level2Data, fn($v) => mb_strpos($v['name'], $cityInput) !== false);
+        $cityMatches = array_filter($level2Data, function ($v) use ($cityInput) {
+            return mb_strpos($v['name'], $cityInput) !== false;
+        });
         if (count($cityMatches) > 1) {
             foreach ($regionMatches as $regionMatch) {
                 foreach ($cityMatches as $id => $city) {
@@ -206,7 +210,10 @@ class RegionMatcher
             }
         }
         if (count($cityMatches) === 0) {
-            $provinceMatches = array_filter($level1Data, fn($v) => mb_strpos($v['name'], $cityInput) !== false);
+            $provinceMatches = array_filter($level1Data, function ($v) use ($cityInput) {
+                return mb_strpos($v['name'], $cityInput) !== false;
+            });
+
             if (count($provinceMatches) > 1) {
                 foreach ($regionMatches as $regionMatch) {
                     $pidPrefix = substr($regionMatch['pid'], 0, 2);
@@ -295,7 +302,9 @@ class RegionMatcher
      */
     private static function handleNoRegionMatch(string $cityInput, string $regionInput, string $unknownValue, array $level1Data, array $level2Data): array
     {
-        $cityMatches = array_filter($level2Data, fn($v) => mb_strpos($v['name'], $cityInput) !== false);
+        $cityMatches = array_filter($level2Data, function ($v) use ($cityInput) {
+            return mb_strpos($v['name'], $cityInput) !== false;
+        });
 
         if (count($cityMatches) > 0) {
             $first = array_values($cityMatches)[0];
@@ -305,12 +314,14 @@ class RegionMatcher
                 'region' => $regionInput
             ];
         }
-
-        $provinceMatches = array_filter($level1Data, fn($v) => mb_strpos($v['name'], $cityInput) !== false);
-
+        $provinceMatches = array_filter($level1Data, function ($v) use ($cityInput) {
+            return mb_strpos($v['name'], $cityInput) !== false;
+        });
         if (count($provinceMatches) > 0) {
             foreach ($provinceMatches as $id => $province) {
-                $citiesUnderProvince = array_filter($level2Data, fn($v) => $v['pid'] == $id);
+                $citiesUnderProvince = array_filter($level2Data, function ($v) use ($id) {
+                    return $v['pid'] == $id;
+                });
                 return [
                     'province' => $province['name'],
                     'city' => count($citiesUnderProvince) === 0 ? '' : $unknownValue,
@@ -318,7 +329,6 @@ class RegionMatcher
                 ];
             }
         }
-
         return [
             'province' => $unknownValue,
             'city' => $cityInput,

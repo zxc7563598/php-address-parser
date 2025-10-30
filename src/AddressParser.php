@@ -10,7 +10,7 @@ class AddressParser
 
     /**
      * 解析地址
-     * @param mixed $string 地址信息
+     * @param string $string 地址信息
      * @param bool $user 信息中是否包含用户信息
      * @param string $unknownValue 未匹配到数据时填充内容
      * @param array $level1Data 一级行政区（省）数据（不传递则使用默认数据源）
@@ -39,23 +39,23 @@ class AddressParser
         ];
         // 提取用户信息（如果需要）
         if ($user) {
-            $extractUserInfo = UserInfoExtractor::extractUserInfo($string);
+            $extractUserInfo = (array)UserInfoExtractor::extractUserInfo($string);
             $data = array_merge($data, [
-                'name' => $extractUserInfo['name'],
-                'mobile' => $extractUserInfo['mobile'],
-                'idn' => $extractUserInfo['idn'],
-                'postcode' => $extractUserInfo['postcode']
+                'name' => $extractUserInfo['name'] ?? '',
+                'mobile' => $extractUserInfo['mobile'] ?? '',
+                'idn' => $extractUserInfo['idn'] ?? '',
+                'postcode' => $extractUserInfo['postcode'] ?? ''
             ]);
-            $addr = $extractUserInfo['addr'];
+            $addr = $extractUserInfo['addr'] ?? '';
         } else {
             $addr = $string;
         }
         // 解析地址
-        $address = RegionMatcher::parseAddress($addr, $unknownValue, $level1Data, $level2Data, $level3Data);
+        $address = (array)RegionMatcher::parseAddress($addr, $unknownValue, $level1Data, $level2Data, $level3Data);
         // 更新地址信息
-        $data['province'] = $address['province'];
-        $data['city'] = $address['city'];
-        $data['region'] = $address['region'];
+        $data['province'] = $address['province'] ?? '';
+        $data['city'] = $address['city'] ?? '';
+        $data['region'] = $address['region'] ?? '';
         $data['street'] = trim(str_replace(
             [$data['region'], $data['city'], $data['province']],
             ['', '', ''],
